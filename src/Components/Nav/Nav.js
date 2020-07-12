@@ -6,15 +6,15 @@ import "./Nav.css";
 
 class Nav extends Component {
   render() {
-    if (this.props.location.pathname === "/") {
+    const { location, profilePicture, username } = this.props;
+    if (location.pathname === "/") {
       return <></>;
     }
-    console.log(this.props);
     return (
       <aside>
         <section>
-          <img src={this.props.profilePicture} alt="Avatar" />
-          <span>{this.props.username}</span>
+          <img src={profilePicture} alt="Avatar" />
+          <span>{username}</span>
         </section>
         <nav>
           <Link to="/dashboard">Home</Link>
