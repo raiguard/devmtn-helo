@@ -18,13 +18,14 @@ module.exports = {
     const db = req.app.get("db");
     const { username, password } = req.body;
 
-    const user = await db.user.get(username);
-    if (!user[0]) return res.status(400).send("Incorrect username or password");
+    const response = await db.user.get(username);
+    const user = response[0];
+    if (!user) return res.status(400).send("Incorrect username or password");
 
-    const authenticated = bcrypt.compareSync(password, user[0].password);
+    const authenticated = bcrypt.compareSync(password, user.password);
     if (authenticated) {
       delete user.password;
-      return res.status(200).send(user);
+      return res.status(200).send(response);
     } else {
       return res.status(400).send("Incorrect username or password");
     }

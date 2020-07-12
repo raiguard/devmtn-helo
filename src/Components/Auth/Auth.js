@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { setUser } from "../../redux/reducer";
 
 class Auth extends Component {
   constructor(props) {
@@ -18,8 +20,8 @@ class Auth extends Component {
   onSignInButtonClick = async () => {
     const { username, password } = this.state;
     try {
-      await axios.post("/auth/signin", { username, password });
-      this.props.history.push("/dashboard");
+      const res = await axios.post("/auth/signin", { username, password });
+      this.setUserAndRedirect(res.data[0]);
     } catch (err) {
       alert(err.response.request.response);
     }
@@ -28,11 +30,17 @@ class Auth extends Component {
   onRegisterButtonClick = async () => {
     const { username, password } = this.state;
     try {
-      await axios.post("/auth/register", { username, password });
-      this.props.history.push("/dashboard");
+      const res = await axios.post("/auth/signin", { username, password });
+      this.setUserAndRedirect(res.data[0]);
     } catch (err) {
       alert(err.response.request.response);
     }
+  };
+
+  setUserAndRedirect = (userInfo) => {
+    const { id, username, profile_pic: profilePicture } = userInfo;
+    this.props.setUser(id, username, profilePicture);
+    this.props.history.push("/dashboard");
   };
 
   render() {
@@ -48,4 +56,4 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default connect(null, { setUser })(Auth);

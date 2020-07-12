@@ -9,7 +9,7 @@ function App() {
   return (
     <section className="app">
       <Nav />
-      {routes}
+      <main>{routes}</main>
     </section>
   );
 }

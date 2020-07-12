@@ -31,6 +31,10 @@
 .app {
   font-family: OpenSans;
   display: flex;
+}
+
+main {
+  display: flex;
   flex-direction: column;
   align-items: center;
 }
