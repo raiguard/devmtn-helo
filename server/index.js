@@ -19,6 +19,7 @@ massive({
 app.post("/auth/register", authCtrl.register);
 app.post("/auth/signin", authCtrl.signIn);
 
-app.get("/api/posts/:userid", postCtrl.getPosts);
+app.get("/api/posts/:userid", postCtrl.getAll);
+app.get("/api/post/:postid", postCtrl.getOne);
 
 app.listen(SERVER_PORT, () => console.log(`Server is running on port ${SERVER_PORT}`));
