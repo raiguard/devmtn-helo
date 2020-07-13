@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 
+import "./Post.css";
+
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -37,14 +39,30 @@ class Post extends Component {
   render() {
     const { title, img, content, username, profilePicture } = this.state;
     return (
-      <article>
-        <img src={img} alt="Media" />
-        <label>{title}</label>
-        <label>{content}</label>
-        <label>{username}</label>
-        <img src={profilePicture} alt="Avatar" />
-        {this.props.username === username ? <button onClick={this.deletePost}>Delete</button> : <></>}
-      </article>
+      <section className="post-page">
+        <div className="content-box post">
+          <div className="post-upper-part">
+            <h1>{title}</h1>
+            <div className="author-box">
+              <label className="author-name">by {username}</label>
+              <img className="profile-picture" src={profilePicture} alt="Avatar" />
+            </div>
+          </div>
+          <div className="post-lower-part">
+            <div className="post-img fill">
+              <img className="post-img" src={img} alt="Media" />
+            </div>
+            <p className="post-content">{content}</p>
+          </div>
+          {this.props.username === username ? (
+            <div className="post-button-row">
+              <button onClick={this.deletePost}>Delete</button>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
+      </section>
     );
   }
 }

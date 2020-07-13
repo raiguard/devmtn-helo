@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import "./Dashboard.css";
 
@@ -45,7 +44,7 @@ class Dashboard extends Component {
     const { posts, searchQuery, showUserPosts } = this.state;
     return (
       <section className="dashboard">
-        <div className="dashboard-content dashboard-search">
+        <div className="content-box dashboard-content dashboard-search">
           <input
             className="dashboard-search-input"
             placeholder="Search by title"
@@ -62,11 +61,11 @@ class Dashboard extends Component {
           />
           <label for="showUserPosts">My Posts</label>
         </div>
-        <div className="dashboard-content">
+        <div className="content-box dashboard-content">
           {posts.map((post, i) => (
             <section
               key={i}
-              className="dashboard-content dashboard-post"
+              className="content-box dashboard-content dashboard-post"
               onClick={() => this.props.history.push(`/post/${post.id}`)}
             >
               <h1>{post.title}</h1>
