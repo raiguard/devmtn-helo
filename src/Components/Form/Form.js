@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
 
 class Form extends Component {
@@ -10,12 +9,6 @@ class Form extends Component {
       img: "",
       content: ""
     };
-  }
-
-  componentDidMount() {
-    if (!this.props.username) {
-      this.props.history.push("/");
-    }
   }
 
   addPost = async () => {
@@ -49,8 +42,4 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  return { username: reduxState.username };
-};
-
-export default connect(mapStateToProps)(Form);
+export default Form;

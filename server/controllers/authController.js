@@ -40,6 +40,8 @@ module.exports = {
     const db = req.app.get("db");
     const { userid } = req.session;
 
+    if (!userid) return res.sendStatus(200);
+
     const foundUser = await db.user.get_info(userid);
     const user = foundUser[0];
     if (user) return res.status(200).send(user);

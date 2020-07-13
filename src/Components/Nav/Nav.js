@@ -10,11 +10,15 @@ class Nav extends Component {
   async componentDidMount() {
     const res = await axios.get("/auth/me");
     const { username, profile_pic: profilePicture } = res.data;
+    // this is supposed to redirect the user if they're not signed in, but it doesn't really work all that well...
+    if (!username) {
+      return this.props.history.push("/");
+    }
     this.props.setUser(username, profilePicture);
   }
 
   signOut = async () => {
-    axios.post("/auth/logout");
+    axios.post("/auth/signout");
     this.props.history.push("/");
   };
 

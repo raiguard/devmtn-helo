@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
@@ -14,11 +13,7 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    if (!this.props.username) {
-      this.props.history.push("/");
-    } else {
-      this.updatePosts();
-    }
+    this.updatePosts();
   }
 
   resetSearch = () => {
@@ -75,6 +70,4 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (reduxState) => reduxState;
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

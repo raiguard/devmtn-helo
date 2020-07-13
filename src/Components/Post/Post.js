@@ -16,16 +16,12 @@ class Post extends Component {
   }
 
   async componentDidMount() {
-    if (!this.props.username) {
-      this.props.history.push("/");
-    } else {
-      try {
-        const res = await axios.get(`/api/post/${this.props.match.params.postid}`);
-        const { title, img, content, username, profile_pic: profilePicture, post_id: postID } = res.data[0];
-        this.setState({ title, img, content, username, profilePicture, postID });
-      } catch (err) {
-        console.log(err);
-      }
+    try {
+      const res = await axios.get(`/api/post/${this.props.match.params.postid}`);
+      const { title, img, content, username, profile_pic: profilePicture, post_id: postID } = res.data[0];
+      this.setState({ title, img, content, username, profilePicture, postID });
+    } catch (err) {
+      console.log(err);
     }
   }
 
