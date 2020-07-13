@@ -23,5 +23,6 @@ app.get("/api/posts/:userid", postCtrl.getAll);
 app.get("/api/post/:postid", postCtrl.getOne);
 
 app.post("/api/post/:userid", postCtrl.add);
+app.delete("/api/post/:postid", postCtrl.delete);
 
 app.listen(SERVER_PORT, () => console.log(`Server is running on port ${SERVER_PORT}`));

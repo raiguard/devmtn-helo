@@ -37,5 +37,16 @@ module.exports = {
     } catch (err) {
       return res.status(500).send(err);
     }
+  },
+  delete: async (req, res) => {
+    const db = req.app.get("db");
+    const { postid } = req.params;
+
+    try {
+      await db.post.delete(postid);
+      return res.sendStatus(200);
+    } catch (err) {
+      return res.status(500).send(err);
+    }
   }
 };

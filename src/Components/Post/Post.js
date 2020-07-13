@@ -10,28 +10,45 @@ class Post extends Component {
       img: null,
       content: null,
       username: null,
-      profilePicture: null
+      profilePicture: null,
+      postID: null,
+      authorID: null
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.props.id) {
       this.props.history.push("/");
+    } else {
+      try {
+        const res = await axios.get(`/api/post/${this.props.match.params.postid}`);
+        const {
+          title,
+          img,
+          content,
+          username,
+          profile_pic: profilePicture,
+          author_id: authorID,
+          post_id: postID
+        } = res.data[0];
+        this.setState({ title, img, content, username, profilePicture, authorID, postID });
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 
-  async componentDidMount() {
+  deletePost = async () => {
     try {
-      const res = await axios.get(`/api/post/${this.props.match.params.postid}`);
-      const { title, img, content, username, profile_pic: profilePicture } = res.data[0];
-      this.setState({ title, img, content, username, profilePicture });
+      await axios.delete(`/api/post/${this.state.postID}`);
+      this.props.history.push("/dashboard");
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   render() {
-    const { title, img, content, username, profilePicture } = this.state;
+    const { title, img, content, username, profilePicture, authorID } = this.state;
     return (
       <article>
         <img src={img} alt="Media" />
@@ -39,6 +56,7 @@ class Post extends Component {
         <label>{content}</label>
         <label>{username}</label>
         <img src={profilePicture} alt="Avatar" />
+        {this.props.id === authorID ? <button onClick={this.deletePost}>Delete</button> : <></>}
       </article>
     );
   }
