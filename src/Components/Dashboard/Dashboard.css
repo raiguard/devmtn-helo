@@ -1,2 +1,64 @@
+.dashboard {
+  box-sizing: border-box;
+  padding-left: 8rem;
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-content {
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  width: 80%;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  margin: 0.5rem 0rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-search {
+  flex-direction: row;
+}
+
+.dashboard-search button {
+  height: 1.95rem;
+  padding: 0rem 1rem;
+}
+
 .dashboard-post {
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 5rem;
+  cursor: pointer;
+}
+
+.dashboard-post h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.dashboard-post .profile-picture {
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.dashboard-post .author-box {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.dashboard-post .author-name {
+  padding-right: 0.75rem;
+}
+
+.dashboard-search-input {
+  width: 60%;
+  height: 25px;
 }

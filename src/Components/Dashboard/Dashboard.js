@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import "./Dashboard.css";
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -42,9 +44,16 @@ class Dashboard extends Component {
   render() {
     const { posts, searchQuery, showUserPosts } = this.state;
     return (
-      <section>
-        <section>
-          <input placeholder="Search" value={searchQuery} onChange={this.onSearchInputChange} />
+      <section className="dashboard">
+        <div className="dashboard-content dashboard-search">
+          <input
+            className="dashboard-search-input"
+            placeholder="Search by title"
+            value={searchQuery}
+            onChange={this.onSearchInputChange}
+          />
+          <button onClick={this.updatePosts}>Search</button>
+          <button onClick={this.resetSearch}>Reset</button>
           <input
             id="showUserPosts"
             type="checkbox"
@@ -52,19 +61,23 @@ class Dashboard extends Component {
             onChange={this.onShowUserPostsInputChange}
           />
           <label for="showUserPosts">My Posts</label>
-          <button onClick={this.updatePosts}>Search</button>
-          <button onClick={this.resetSearch}>Reset</button>
-        </section>
-        <section>
+        </div>
+        <div className="dashboard-content">
           {posts.map((post, i) => (
-            <article key={i} className="dashboard-post">
-              <label>{post.title}</label>
-              <label>{post.username}</label>
-              <img src={post.profile_pic} alt="Avatar" />
-              <Link to={`/post/${post.id}`}>View</Link>
-            </article>
+            <section
+              key={i}
+              className="dashboard-content dashboard-post"
+              onClick={() => this.props.history.push(`/post/${post.id}`)}
+            >
+              <h1>{post.title}</h1>
+              <div className="author-box">
+                <label className="author-name">by {post.username}</label>
+                <img className="profile-picture" src={post.profile_pic} alt="Avatar" />
+              </div>
+              {/* <Link to={`/post/${post.id}`}>View</Link> */}
+            </section>
           ))}
-        </section>
+        </div>
       </section>
     );
   }
