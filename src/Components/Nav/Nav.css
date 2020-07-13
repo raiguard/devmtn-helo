@@ -1,13 +1,20 @@
-aside {
+.nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
+  position: fixed;
   height: 100%;
   width: 10rem;
+  padding-bottom: 2rem;
 }
 
-aside nav {
+.nav nav {
   display: flex;
   flex-direction: column;
+}
+
+.nav img {
+  width: 100%;
 }

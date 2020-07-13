@@ -13,7 +13,6 @@ module.exports = {
         userid: +userid,
         userposts: userposts === "true"
       });
-      console.log(posts);
       res.status(200).send(posts);
     } catch (err) {
       console.log(err);

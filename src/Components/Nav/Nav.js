@@ -11,7 +11,7 @@ class Nav extends Component {
       return <></>;
     }
     return (
-      <aside>
+      <aside className="nav">
         <section>
           <img src={profilePicture} alt="Avatar" />
           <span>{username}</span>

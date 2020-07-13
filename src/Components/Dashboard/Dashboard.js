@@ -21,8 +21,8 @@ class Dashboard extends Component {
   }
 
   resetSearch = () => {
-    this.setState({ searchQuery: "", showUserPosts: true });
-    this.updatePosts();
+    // update posts in setState() callback to guarantee that state changes first
+    this.setState({ searchQuery: "", showUserPosts: true }, () => this.updatePosts());
   };
 
   updatePosts = async () => {
