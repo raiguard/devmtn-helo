@@ -38,10 +38,19 @@ main {
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
+  background-color: #f2f2f2;
 }
 
 button {
   background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
   color: #fff;
   border-width: 0;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  box-shadow: 0 0 20px #333;
+  background-position: 50%;
+  background-size: cover;
+  background-color: #ffffff;
 }

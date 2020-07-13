@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducer";
 
 import "./Nav.css";
 import axios from "axios";
+
+import dashboardIcon from "../../assets/dashboard.png";
+import newPostIcon from "../../assets/newPost.png";
+import signOutIcon from "../../assets/signOut.png";
 
 class Nav extends Component {
   async componentDidMount() {
@@ -17,6 +21,11 @@ class Nav extends Component {
     this.props.setUser(username, profilePicture);
   }
 
+  navigate = (e) => {
+    const { name } = e.target;
+    this.props.history.push(`/${name}`);
+  };
+
   signOut = async () => {
     axios.post("/auth/signout");
     this.props.history.push("/");
@@ -28,17 +37,13 @@ class Nav extends Component {
       return <></>;
     }
     return (
-      <aside className="nav">
-        <section>
-          <img src={profilePicture} alt="Avatar" />
-          <span>{username}</span>
-        </section>
-        <nav>
-          <Link to="/dashboard">Home</Link>
-          <Link to="/new">New post</Link>
-          <button onClick={this.signOut}>Sign out</button>
-        </nav>
-      </aside>
+      <nav>
+        <img className="profile-picture" src={profilePicture} alt="Avatar" />
+        <h1>{username}</h1>
+        <img class="nav-img" src={dashboardIcon} name="dashboard" onClick={this.navigate} />
+        <img class="nav-img" src={newPostIcon} name="new" onClick={this.navigate} />
+        <img class="nav-img nav-signout-img" src={signOutIcon} onClick={this.signOut} />
+      </nav>
     );
   }
 }
