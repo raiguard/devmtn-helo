@@ -1,10 +1,23 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { setUser } from "../../redux/reducer";
 
 import "./Nav.css";
+import axios from "axios";
 
 class Nav extends Component {
+  async componentDidMount() {
+    const res = await axios.get("/auth/me");
+    const { username, profile_pic: profilePicture } = res.data;
+    this.props.setUser(username, profilePicture);
+  }
+
+  signOut = async () => {
+    axios.post("/auth/logout");
+    this.props.history.push("/");
+  };
+
   render() {
     const { location, profilePicture, username } = this.props;
     if (location.pathname === "/") {
@@ -19,19 +32,14 @@ class Nav extends Component {
         <nav>
           <Link to="/dashboard">Home</Link>
           <Link to="/new">New post</Link>
-          <Link to="/">Sign out</Link>
+          <button onClick={this.signOut}>Sign out</button>
         </nav>
       </aside>
     );
   }
 }
 
-const mapStateToProps = (reduxState) => {
-  return {
-    username: reduxState.username,
-    profilePicture: reduxState.profilePicture
-  };
-};
+const mapStateToProps = (reduxState) => reduxState;
 
 // withRouter() gives the component router, params, location, and routes props
-export default connect(mapStateToProps)(withRouter(Nav));
+export default connect(mapStateToProps, { setUser })(withRouter(Nav));

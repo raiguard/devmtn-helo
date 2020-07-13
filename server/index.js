@@ -28,6 +28,7 @@ massive({
 app.post("/auth/register", authCtrl.register);
 app.post("/auth/signin", authCtrl.signIn);
 app.post("/auth/signout", authCtrl.signOut);
+app.get("/auth/me", authCtrl.getInfo);
 
 app.get("/api/posts", postCtrl.getAll);
 app.get("/api/post/:postid", postCtrl.getOne);

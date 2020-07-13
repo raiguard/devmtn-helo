@@ -19,7 +19,7 @@ module.exports = {
     const db = req.app.get("db");
     const { username, password } = req.body;
 
-    const foundUser = await db.user.get(username);
+    const foundUser = await db.user.check_username(username);
     const user = foundUser[0];
     if (!user) return res.status(400).send("Incorrect username or password");
 
@@ -35,5 +35,14 @@ module.exports = {
   signOut: (req, res) => {
     req.session.destroy();
     res.sendStatus(200);
+  },
+  getInfo: async (req, res) => {
+    const db = req.app.get("db");
+    const { userid } = req.session;
+
+    const foundUser = await db.user.get_info(userid);
+    const user = foundUser[0];
+    if (user) return res.status(200).send(user);
+    else return res.status(500).send("User not found");
   }
 };
