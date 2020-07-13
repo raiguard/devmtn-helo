@@ -13,7 +13,7 @@ class Form extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.id) {
+    if (!this.props.username) {
       this.props.history.push("/");
     }
   }
@@ -24,7 +24,7 @@ class Form extends Component {
     const passedImg = img === "" ? `https://robohash.org/${title}` : img;
 
     try {
-      await axios.post(`/api/post/${this.props.id}`, { title, img: passedImg, content });
+      await axios.post(`/api/post`, { title, img: passedImg, content });
       this.props.history.push("/dashboard");
     } catch (err) {
       console.log(err);
@@ -50,7 +50,7 @@ class Form extends Component {
 }
 
 const mapStateToProps = (reduxState) => {
-  return { id: reduxState.id };
+  return { username: reduxState.username };
 };
 
 export default connect(mapStateToProps)(Form);

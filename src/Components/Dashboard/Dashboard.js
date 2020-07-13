@@ -14,7 +14,7 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    if (!this.props.id) {
+    if (!this.props.username) {
       this.props.history.push("/");
     } else {
       this.updatePosts();
@@ -29,7 +29,7 @@ class Dashboard extends Component {
   updatePosts = async () => {
     const { searchQuery, showUserPosts } = this.state;
     try {
-      const res = await axios.get(`/api/posts/${this.props.id}?search=${searchQuery}&userposts=${showUserPosts}`);
+      const res = await axios.get(`/api/posts?search=${searchQuery}&userposts=${showUserPosts}`);
       this.setState({ posts: res.data });
     } catch (err) {
       console.log(err);

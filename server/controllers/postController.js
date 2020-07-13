@@ -1,7 +1,7 @@
 module.exports = {
   getAll: async (req, res) => {
     const db = req.app.get("db");
-    const { userid } = req.params;
+    const { userid } = req.session;
     const { search, userposts } = req.query;
 
     try {
@@ -28,7 +28,7 @@ module.exports = {
   },
   add: async (req, res) => {
     const db = req.app.get("db");
-    const { userid } = req.params;
+    const { userid } = req.session;
     const { title, img, content } = req.body;
 
     try {

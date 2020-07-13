@@ -11,27 +11,18 @@ class Post extends Component {
       content: null,
       username: null,
       profilePicture: null,
-      postID: null,
-      authorID: null
+      postID: null
     };
   }
 
   async componentDidMount() {
-    if (!this.props.id) {
+    if (!this.props.username) {
       this.props.history.push("/");
     } else {
       try {
         const res = await axios.get(`/api/post/${this.props.match.params.postid}`);
-        const {
-          title,
-          img,
-          content,
-          username,
-          profile_pic: profilePicture,
-          author_id: authorID,
-          post_id: postID
-        } = res.data[0];
-        this.setState({ title, img, content, username, profilePicture, authorID, postID });
+        const { title, img, content, username, profile_pic: profilePicture, post_id: postID } = res.data[0];
+        this.setState({ title, img, content, username, profilePicture, postID });
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +39,7 @@ class Post extends Component {
   };
 
   render() {
-    const { title, img, content, username, profilePicture, authorID } = this.state;
+    const { title, img, content, username, profilePicture } = this.state;
     return (
       <article>
         <img src={img} alt="Media" />
@@ -56,14 +47,14 @@ class Post extends Component {
         <label>{content}</label>
         <label>{username}</label>
         <img src={profilePicture} alt="Avatar" />
-        {this.props.id === authorID ? <button onClick={this.deletePost}>Delete</button> : <></>}
+        {this.props.username === username ? <button onClick={this.deletePost}>Delete</button> : <></>}
       </article>
     );
   }
 }
 
 const mapStateToProps = (reduxState) => {
-  return { id: reduxState.id };
+  return { username: reduxState.username };
 };
 
 export default connect(mapStateToProps)(Post);

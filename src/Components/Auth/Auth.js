@@ -30,7 +30,7 @@ class Auth extends Component {
   onRegisterButtonClick = async () => {
     const { username, password } = this.state;
     try {
-      const res = await axios.post("/auth/signin", { username, password });
+      const res = await axios.post("/auth/register", { username, password });
       this.setUserAndRedirect(res.data[0]);
     } catch (err) {
       alert(err.response.request.response);
@@ -38,8 +38,8 @@ class Auth extends Component {
   };
 
   setUserAndRedirect = (userInfo) => {
-    const { id, username, profile_pic: profilePicture } = userInfo;
-    this.props.setUser(id, username, profilePicture);
+    const { username, profile_pic: profilePicture } = userInfo;
+    this.props.setUser(username, profilePicture);
     this.props.history.push("/dashboard");
   };
 

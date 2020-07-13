@@ -12,22 +12,28 @@ module.exports = {
     const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const profilePicture = `https://robohash.org/${username}`;
     const newUser = await db.user.create({ username, hash, profilePicture });
+    req.session.userid = newUser.id;
     res.status(200).send(newUser);
   },
   signIn: async (req, res) => {
     const db = req.app.get("db");
     const { username, password } = req.body;
 
-    const response = await db.user.get(username);
-    const user = response[0];
+    const foundUser = await db.user.get(username);
+    const user = foundUser[0];
     if (!user) return res.status(400).send("Incorrect username or password");
 
     const authenticated = bcrypt.compareSync(password, user.password);
     if (authenticated) {
       delete user.password;
-      return res.status(200).send(response);
+      req.session.userid = user.id;
+      return res.status(200).send(foundUser);
     } else {
       return res.status(400).send("Incorrect username or password");
     }
+  },
+  signOut: (req, res) => {
+    req.session.destroy();
+    res.sendStatus(200);
   }
 };
