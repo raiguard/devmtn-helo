@@ -10,7 +10,7 @@ module.exports = {
         userid: +userid,
         userposts: userposts === "true"
       });
-      res.status(200).send(posts);
+      return res.status(200).send(posts);
     } catch (err) {
       return res.status(500).send(err);
     }
@@ -22,6 +22,18 @@ module.exports = {
     try {
       const post = await db.post.get_one(+postid);
       res.status(200).send(post);
+    } catch (err) {
+      return res.status(500).send(err);
+    }
+  },
+  add: async (req, res) => {
+    const db = req.app.get("db");
+    const { userid } = req.params;
+    const { title, img, content } = req.body;
+
+    try {
+      await db.post.add({ title, img, content, userid });
+      return res.sendStatus(200);
     } catch (err) {
       return res.status(500).send(err);
     }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 class Post extends Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class Post extends Component {
       username: null,
       profilePicture: null
     };
+  }
+
+  componentDidMount() {
+    if (!this.props.id) {
+      this.props.history.push("/");
+    }
   }
 
   async componentDidMount() {
@@ -37,4 +44,8 @@ class Post extends Component {
   }
 }
 
-export default Post;
+const mapStateToProps = (reduxState) => {
+  return { id: reduxState.id };
+};
+
+export default connect(mapStateToProps)(Post);
