@@ -1,3 +1,5 @@
 import React from "react";
 
-export default () => <div>Post</div>;
+export default (props) => {
+  return <div></div>;
+};

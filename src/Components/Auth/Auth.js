@@ -38,7 +38,7 @@ class Auth extends Component {
   };
 
   setUserAndRedirect = (userInfo) => {
-    const { id, username, profile_pic: profilePicture } = userInfo;
+    const { user_id: id, username, profile_pic: profilePicture } = userInfo;
     this.props.setUser(id, username, profilePicture);
     this.props.history.push("/dashboard");
   };

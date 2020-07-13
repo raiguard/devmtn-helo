@@ -4,4 +4,10 @@ aside {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  width: 10rem;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
 }
