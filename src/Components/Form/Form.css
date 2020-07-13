@@ -1,4 +1,73 @@
-.form {
+.form-page {
+  box-sizing: border-box;
   padding-left: 8rem;
-  width: 10020;
+  padding-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  width: 70%;
+}
+
+.form-upper-part {
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-upper-part h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #ff9770;
+}
+
+.form-img {
+  width: 50%;
+  height: 20rem;
+  margin: 1rem;
+}
+
+.form-inputs-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-input-container {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.form-input-container label {
+  box-sizing: border-box;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.form-input-container input {
+  width: 100%;
+  margin-top: 0.35rem;
+}
+
+.form-button-row {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.form-button-row button {
+  height: 2rem;
+  padding: 0.5rem 1rem;
 }

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "./Form.css";
+
+import placeholder from "../../assets/placeholder.png";
+
 class Form extends Component {
   constructor(props) {
     super(props);
@@ -29,14 +33,37 @@ class Form extends Component {
     this.setState({ [name]: value });
   };
 
+  fallbackToPlaceholderImg = (e) => {
+    e.target.src = placeholder;
+  };
+
   render() {
     const { title, img, content } = this.state;
     return (
-      <section>
-        <input name="title" placeholder="Title" value={title} onChange={this.updateInputState} />
-        <input name="img" placeholder="Image URL" value={img} onChange={this.updateInputState} />
-        <input name="content" placeholder="Content" value={content} onChange={this.updateInputState} />
-        <button onClick={this.addPost}>Post</button>
+      <section className="form-page">
+        <div className="content-box form">
+          <div className="form-upper-part">
+            <h1>New Post</h1>
+          </div>
+          <div className="form-input-container">
+            <label>Title:</label>
+            <input name="title" value={title} onChange={this.updateInputState} />
+          </div>
+          <div className="fill form-img">
+            <img src={img} alt="Form" onError={this.fallbackToPlaceholderImg} />
+          </div>
+          <div className="form-input-container">
+            <label>Image URL:</label>
+            <input name="img" value={img} onChange={this.updateInputState} />
+          </div>
+          <div className="form-input-container">
+            <label>Content:</label>
+            <input classname="content-input" name="content" value={content} onChange={this.updateInputState} />
+          </div>
+          <div className="form-button-row">
+            <button onClick={this.addPost}>Post</button>
+          </div>
+        </div>
       </section>
     );
   }
