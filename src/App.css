@@ -37,5 +37,11 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 12rem;
+  min-height: 100vh;
+}
+
+button {
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  color: #fff;
+  border-width: 0;
 }

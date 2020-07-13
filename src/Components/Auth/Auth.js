@@ -3,6 +3,9 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducer";
 
+import "./Auth.css";
+import logo from "../../assets/logo.png";
+
 class Auth extends Component {
   constructor(props) {
     super(props);
@@ -46,11 +49,23 @@ class Auth extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <section>
-        <input name="username" placeholder="username" onChange={this.onInputChange} value={username} />
-        <input name="password" placeholder="password" onChange={this.onInputChange} value={password} type="password" />
-        <button onClick={this.onSignInButtonClick}>Sign in</button>
-        <button onClick={this.onRegisterButtonClick}>Register</button>
+      <section className="auth">
+        <div className="auth-container">
+          <img src={logo} />
+          <h1>Helo</h1>
+          <div className="auth-input-row">
+            <label>Username</label>
+            <input name="username" onChange={this.onInputChange} value={username} />
+          </div>
+          <div className="auth-input-row">
+            <label>Password</label>
+            <input name="password" onChange={this.onInputChange} value={password} type="password" />
+          </div>
+          <div className="auth-button-container">
+            <button onClick={this.onSignInButtonClick}>Sign in</button>
+            <button onClick={this.onRegisterButtonClick}>Register</button>
+          </div>
+        </div>
       </section>
     );
   }
