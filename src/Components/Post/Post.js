@@ -15,6 +15,9 @@ class Post extends Component {
       profilePicture: null,
       postID: null
     };
+
+    // rubric expectations... arrow function are better!
+    this.deletePost = this.deletePost.bind(this);
   }
 
   async componentDidMount() {
@@ -27,14 +30,14 @@ class Post extends Component {
     }
   }
 
-  deletePost = async () => {
+  async deletePost() {
     try {
       await axios.delete(`/api/post/${this.state.postID}`);
       this.props.history.push("/dashboard");
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
   render() {
     const { title, img, content, username, profilePicture } = this.state;

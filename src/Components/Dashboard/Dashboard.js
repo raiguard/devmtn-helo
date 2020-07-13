@@ -54,6 +54,7 @@ class Dashboard extends Component {
           <button onClick={this.updatePosts}>Search</button>
           <button onClick={this.resetSearch}>Reset</button>
           <input
+            className="search-checkbox"
             id="showUserPosts"
             type="checkbox"
             checked={showUserPosts}
@@ -73,7 +74,6 @@ class Dashboard extends Component {
                 <label className="author-name">by {post.username}</label>
                 <img className="profile-picture" src={post.profile_pic} alt="Avatar" />
               </div>
-              {/* <Link to={`/post/${post.id}`}>View</Link> */}
             </section>
           ))}
         </div>

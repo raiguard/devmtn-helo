@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser } from "../../redux/reducer";
 
@@ -40,8 +40,12 @@ class Nav extends Component {
       <nav>
         <img className="profile-picture" src={profilePicture} alt="Avatar" />
         <h1>{username}</h1>
-        <img class="nav-img" src={dashboardIcon} name="dashboard" onClick={this.navigate} />
-        <img class="nav-img" src={newPostIcon} name="new" onClick={this.navigate} />
+        <Link to="/dashboard">
+          <img className="nav-img" src={dashboardIcon} />
+        </Link>
+        <Link to="/new">
+          <img className="nav-img" src={newPostIcon} />
+        </Link>
         <img class="nav-img nav-signout-img" src={signOutIcon} onClick={this.signOut} />
       </nav>
     );

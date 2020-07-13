@@ -6,7 +6,7 @@ module.exports = {
     const { username, password } = req.body;
 
     // check if the user already exists
-    const existingUser = await db.user.get(username);
+    const existingUser = await db.user.check_username(username);
     if (existingUser[0]) return res.status(409).send("User with that name already exists");
 
     const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
