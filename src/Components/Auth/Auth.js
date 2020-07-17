@@ -51,7 +51,7 @@ class Auth extends Component {
     return (
       <section className="auth">
         <div className="auth-container">
-          <img src={logo} />
+          <img src={logo} alt="Logo" />
           <h1>Helo</h1>
           <div className="auth-input-row">
             <label>Username</label>

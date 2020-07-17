@@ -41,12 +41,12 @@ class Nav extends Component {
         <img className="profile-picture" src={profilePicture} alt="Avatar" />
         <h1>{username}</h1>
         <Link to="/dashboard">
-          <img className="nav-img" src={dashboardIcon} />
+          <img className="nav-img" src={dashboardIcon} alt="Dashboard" />
         </Link>
         <Link to="/new">
-          <img className="nav-img" src={newPostIcon} />
+          <img className="nav-img" src={newPostIcon} alt="New Post" />
         </Link>
-        <img class="nav-img nav-signout-img" src={signOutIcon} onClick={this.signOut} />
+        <img className="nav-img nav-signout-img" src={signOutIcon} onClick={this.signOut} alt="Sign out" />
       </nav>
     );
   }

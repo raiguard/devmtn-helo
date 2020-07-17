@@ -58,7 +58,7 @@ class Form extends Component {
           </div>
           <div className="form-input-container">
             <label>Content:</label>
-            <input classname="content-input" name="content" value={content} onChange={this.updateInputState} />
+            <input name="content" value={content} onChange={this.updateInputState} />
           </div>
           <div className="form-button-row">
             <button onClick={this.addPost}>Post</button>

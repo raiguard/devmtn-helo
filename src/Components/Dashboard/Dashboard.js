@@ -60,7 +60,7 @@ class Dashboard extends Component {
             checked={showUserPosts}
             onChange={this.onShowUserPostsInputChange}
           />
-          <label for="showUserPosts">My Posts</label>
+          <label htmlFor="showUserPosts">My Posts</label>
         </div>
         <div className="content-box dashboard-content">
           {posts.map((post, i) => (
